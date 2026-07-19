@@ -1,6 +1,7 @@
 // src/App.jsx
 import { useState } from 'react'
 import TaskInput from './components/TaskInput'
+import TaskList from './components/TaskList'
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -17,6 +18,19 @@ function App() {
     ])
   }
 
+  const toggleTask = (id) => {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    )
+  }
+
+  const deleteTask = (id) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id))
+  }
+
+
   return (
     <div style={{ maxWidth: '600px', margin: '50px auto', padding: '0 20px' }}>
       <h1>📋 智能任务看板</h1>
@@ -24,17 +38,12 @@ function App() {
       {/* 使用 TaskInput 组件，传入 onAdd 函数 */}
       <TaskInput onAdd={addTask} />
       
-      {/* 显示任务列表（临时） */}
-      <div>
-        <h3>任务列表（共 {tasks.length} 项）</h3>
-        <ul>
-          {tasks.map((task) => (
-            <li key={task.id}>
-              {task.text}
-            </li>
-          ))}
-        </ul>
-      </div>
+
+      <TaskList
+        tasks={tasks}
+        onToggle={toggleTask}
+        onDelete={deleteTask}
+      />
     </div>
   )
 }
