@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import TaskInput from './components/TaskInput'
 import TaskList from './components/TaskList'
 import { useLocalStorage } from './hooks/useLocalStorage'
@@ -23,17 +23,17 @@ function App() {
     ])
   }
   
-  const toggleTask = (id) => {
+  const toggleTask = useCallback((id) => {
     setTasks((prev) =>
       prev.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     )
-  }
+  },[])
 
-  const deleteTask = (id) => {
+  const deleteTask = useCallback((id) => {
     setTasks((prev) => prev.filter((task) => task.id !== id))
-  }
+  },[])
 
   //使用useMemo缓存筛选后的任务列表
   const filteredTasks = useMemo(() => {
