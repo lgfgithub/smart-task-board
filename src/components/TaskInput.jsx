@@ -1,4 +1,3 @@
-// src/components/TaskInput.jsx
 import { useState } from 'react'
 
 export default function TaskInput({ onAdd }) {

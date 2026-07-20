@@ -1,5 +1,3 @@
-// src/components/TaskItem.jsx
-
 export default function TaskItem({ task, onToggle, onDelete }) {
   // 处理切换完成状态
   const handleToggle = () => {

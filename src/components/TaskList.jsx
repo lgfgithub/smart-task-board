@@ -1,4 +1,3 @@
-// src/components/TaskList.jsx
 import TaskItem from './TaskItem'  // 等会我们还要创建 TaskItem
 
 export default function TaskList({ tasks, onToggle, onDelete }) {
@@ -15,7 +14,7 @@ export default function TaskList({ tasks, onToggle, onDelete }) {
     <ul style={styles.list}>
       {tasks.map((task) => (
         <TaskItem
-          key={task.id}          // ✅ 重要！用唯一 id 作为 key
+          key={task.id}          
           task={task}
           onToggle={onToggle}
           onDelete={onDelete}
