@@ -1,6 +1,5 @@
 import { memo } from "react"
 export default memo(function TaskItem({ task, onToggle, onDelete }) {
-  console.log('TaskItem 渲染了:', task.id); // 用来观察渲染次数
   // 处理切换完成状态
   const handleToggle = () => {
     onToggle(task.id)

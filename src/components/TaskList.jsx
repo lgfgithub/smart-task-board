@@ -1,14 +1,36 @@
-import TaskItem from './TaskItem'  // 等会我们还要创建 TaskItem
-
-export default function TaskList({ tasks, onToggle, onDelete }) {
+import { memo } from 'react'
+import TaskItem from './TaskItem'
+export default memo(function TaskList({ tasks, onToggle, onDelete, totalTasks, filter }) {
   // 如果任务列表为空，显示提示信息
-  if (tasks.length === 0) {
+  if (totalTasks === 0) {
     return (
       <div style={styles.emptyContainer}>
         <p style={styles.emptyText}>🎯 还没有任务，添加一个吧！</p>
       </div>
     )
   }
+
+  // 有任务，但当前筛选条件下没有匹配的
+  if(tasks.length === 0 ){
+    const filterMap = {
+      'all': '全部',
+      'active': '进行中',
+      'completed': '已完成'
+    };
+    return(
+      <div style={styles.emptyContainer}>
+        <p style={styles.emptyText}>
+          没有“{filterMap[filter] || '匹配'}”的任务
+        </p>
+        <p style={{...styles.emptyText, fontStyle: '14px', color: '#bbb'}}>
+          试试切换其他筛选条件
+        </p>
+
+      </div>
+    );
+  }
+
+  // 有任务，且当前筛选有结果,正常显示
 
   return (
     <ul style={styles.list}>
@@ -22,7 +44,7 @@ export default function TaskList({ tasks, onToggle, onDelete }) {
       ))}
     </ul>
   )
-}
+})
 
 // 简单样式
 const styles = {
