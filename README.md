@@ -5,6 +5,7 @@
 ## 在线预览
 
 https://smart-task-board-amber.vercel.app
+（国内网络访问可能不稳定，建议直接查看 GitHub 仓库）
 
 ## 功能特性
 
